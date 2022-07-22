@@ -1,0 +1,174 @@
+* {
+  margin: 0;
+}
+
+:root {
+  --brown: #caad7e;
+  --tan: #ece5c8;
+  --light-tan: #d6c995;
+  --light-green: #d5e7b8;
+  --medium-green: #c4dea4;
+  --header: #61848e;
+  --brown: #402017;
+  --wall: #61848e;
+}
+
+.App {
+  text-align: center;
+  background-color: white;
+}
+
+header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  height: 10vh;
+  background-color: var(--header);
+  align-items: center;
+  color: var(--tan);
+}
+
+footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  height: 10vh;
+  background-color: var(--tan);
+  align-items: center;
+  color: var(--brown);
+}
+
+#header-links {
+  display: flex;
+  flex-direction: row;
+  width: 30%;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+#companyName {
+  margin-left: 50px;
+}
+
+#home {
+  height: 80vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 10vw;
+  background-image: url("../src/images/grass.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.shoe-main {
+  max-width: 450px;
+  height: 337.5px;
+  border-radius: 5%;
+}
+
+#shop-btn {
+  width: 20vw;
+  background-color: var(--brown);
+  border-radius: 10px;
+  height: 50px;
+  font-size: larger;
+  margin-top: 5vh;
+  margin-bottom: 2vh;
+  color: white;
+  border: none;
+}
+
+.main-para {
+  margin-top: 2vh;
+  font-size: large;
+}
+
+.dadImg {
+  width: 550px;
+  border-radius: 5%;
+}
+
+.dadFont {
+  color: var(--light-tan);
+}
+
+.main-margin {
+  margin-bottom: 20px;
+  color: white;
+}
+
+.link {
+  text-decoration: none;
+}
+
+a:link {
+  color: var(--tan);
+}
+
+a:visited {
+  color: var(--tan);
+}
+
+a:hover {
+  color: var(--brown);
+}
+
+a:active {
+  color: var(--brown);
+}
+
+#shop-home {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.product {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid black;
+  width: 350px;
+  height: 400px;
+  gap: 10px;
+  margin: 50px 50px 50px 50px;
+  border-radius: 15px;
+  background-color: white;
+}
+
+.productImage {
+  width: 200px;
+  max-height: 150px;
+}
+
+.product-btn {
+  width: 80%;
+  height: 40px;
+  margin-top: 10px;
+  color: white;
+  background-color: var(--header);
+  font-size: large;
+  border-radius: 15px;
+  border: none;
+}
+
+#productImageDiv {
+  height: 160px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#shop-homeHolder {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f1f1f1;
+}
+
+#shop-header {
+  background-color: var(--tan);
+  height: 8vh;
+}
