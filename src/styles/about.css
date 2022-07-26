@@ -1,0 +1,98 @@
+:root {
+  --brown: #caad7e;
+  --tan: #ece5c8;
+  --light-tan: #d6c995;
+  --light-green: #d5e7b8;
+  --medium-green: #c4dea4;
+  --header: #61848e;
+  --brown: #402017;
+  --wall: #61848e;
+}
+
+#aboutPage {
+  background-color: #f1f1f1;
+}
+
+.aboutHeader {
+  height: 8vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--tan);
+  width: 100vw;
+}
+
+#aboutMain {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 100px;
+}
+
+#aboutStory {
+  height: 80vh;
+}
+
+.sideBy {
+  display: flex;
+  flex-direction: row;
+  width: 100vw;
+  margin-top: 2vh;
+  justify-content: center;
+  /* gap: 100px; */
+}
+
+.aboutInfo {
+  width: 40vw;
+  text-align: center;
+  padding-left: 4vw;
+  padding-top: 8vh;
+  line-height: 1.5;
+}
+
+.aboutImageDiv {
+  width: 40vw;
+}
+
+.aboutImage {
+  width: 400px;
+}
+
+.teamMain {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.teamItem {
+  height: 50vh;
+  width: 20vw;
+  display: flex;
+  flex-direction: column;
+}
+
+.teamImg {
+  height: 55vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.italics {
+  font-style: italic;
+  color: var(--header);
+  font-size: larger;
+}
+
+#link-about {
+  color: var(--header);
+  text-decoration: none;
+}
+
+#link-about:hover {
+  text-decoration: underline;
+  color: var(--brown);
+}

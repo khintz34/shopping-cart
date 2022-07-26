@@ -80,6 +80,10 @@ footer {
   border: none;
 }
 
+#shop-btn:hover {
+  background-color: var(--header);
+}
+
 .main-para {
   margin-top: 2vh;
   font-size: large;
@@ -113,6 +117,7 @@ a:visited {
 
 a:hover {
   color: var(--brown);
+  transform: scale(1.1);
 }
 
 a:active {
@@ -186,6 +191,7 @@ a:active {
   border: none;
   cursor: pointer;
   min-width: 160px;
+  border-radius: 15px;
 }
 
 .dropbtn:hover,

@@ -24,7 +24,7 @@ const Shop = (props) => {
       price: 74.99,
       sale: 54.97,
       image: dadShoe1,
-      category: "shoes",
+      category: "Shoes",
     },
     {
       name: "The 'Back in My Day'",
@@ -32,7 +32,7 @@ const Shop = (props) => {
       price: 65.99,
       sale: 44.48,
       image: dadShoe2,
-      category: "shoes",
+      category: "Shoes",
     },
     {
       name: "The 'Go Ask Your Mother'",
@@ -40,7 +40,7 @@ const Shop = (props) => {
       price: 69.99,
       sale: 67.26,
       image: dadShoe3,
-      category: "shoes",
+      category: "Shoes",
     },
     {
       name: "The 'Rub Some Dirt On It' 2.0",
@@ -48,7 +48,7 @@ const Shop = (props) => {
       price: 70.99,
       sale: 64.4,
       image: dadShoe4,
-      category: "shoes",
+      category: "Shoes",
     },
     {
       name: "The 'Its Going to Come Back in Style'",
@@ -56,7 +56,7 @@ const Shop = (props) => {
       price: 37.0,
       sale: 29.97,
       image: jorts,
-      category: "apparel",
+      category: "Apparel",
     },
     {
       name: "The 'Knew it Would Come Back'",
@@ -64,7 +64,7 @@ const Shop = (props) => {
       price: 29.99,
       sale: 19.99,
       image: fannyPack,
-      category: "accessory",
+      category: "Accessories",
     },
     {
       name: "The 'Hit me Tube Sock'",
@@ -72,7 +72,7 @@ const Shop = (props) => {
       price: 20.99,
       sale: 19.9,
       image: socks,
-      category: "apparel",
+      category: "Apparel",
     },
     {
       name: "The 'Medium Rare'",
@@ -80,7 +80,7 @@ const Shop = (props) => {
       price: 25.5,
       sale: 19.99,
       image: apron,
-      category: "apparel",
+      category: "Apparel",
     },
     {
       name: "The 'Dad of All Trades'",
@@ -88,7 +88,7 @@ const Shop = (props) => {
       price: 39.99,
       sale: 29.99,
       image: grill,
-      category: "accessory",
+      category: "Accessories",
     },
     {
       name: "The 'Gadget Dad'",
@@ -96,7 +96,7 @@ const Shop = (props) => {
       price: 29.99,
       sale: 19.99,
       image: wrist,
-      category: "accessory",
+      category: "Accessories",
     },
     {
       name: "The 'How Much Horsepower'",
@@ -104,7 +104,7 @@ const Shop = (props) => {
       price: 200,
       sale: 149.99,
       image: snow,
-      category: "utility",
+      category: "Utilities",
     },
     {
       name: "The 'Not Now Honey'",
@@ -112,7 +112,7 @@ const Shop = (props) => {
       price: 30.49,
       sale: 25.99,
       image: beer,
-      category: "accessory",
+      category: "Accessories",
     },
     {
       name: "The 'Starter Guide'",
@@ -120,7 +120,7 @@ const Shop = (props) => {
       price: 10.59,
       sale: 6.99,
       image: jokes,
-      category: "accessory",
+      category: "Accessories",
     },
     {
       name: "The 'Versatile'",
@@ -128,12 +128,13 @@ const Shop = (props) => {
       price: 40.0,
       sale: 35.99,
       image: zipp,
-      category: "apparel",
+      category: "Apparel",
     },
   ];
 
   const [currentProducts, setCurrentProducts] = useState(totalProducts);
   const [productCount, setProductCount] = useState(totalProducts.length);
+  const [category, setCategory] = useState("All Items");
 
   let productArray = currentProducts.map((index, i) => {
     return (
@@ -168,9 +169,8 @@ const Shop = (props) => {
   const dropDownClick = (category) => {
     setProductCount(0);
 
-    if (category === "low to high" || category === "high to low") {
-      setCurrentProducts(totalProducts);
-      setProductCount(totalProducts.length);
+    if (category === "Low to High" || category === "High to Low") {
+      sortProducts(category);
     } else {
       let newArray = totalProducts.filter((index, i) => {
         if (index.category === category) {
@@ -179,34 +179,53 @@ const Shop = (props) => {
       });
       setCurrentProducts(newArray);
       setProductCount(newArray.length);
+      setCategory(category);
     }
   };
+
+  function sortProducts(category) {
+    let sortArray;
+    if (category === "Low to High") {
+      sortArray = totalProducts.sort((a, b) => {
+        return a.sale - b.sale;
+      });
+    } else {
+      sortArray = totalProducts.sort((a, b) => {
+        return b.sale - a.sale;
+      });
+    }
+    setCurrentProducts(sortArray);
+    setProductCount(sortArray.length);
+    setCategory(category);
+  }
 
   return (
     <div id="shop-main">
       <div id="shop-header">
-        <div>Showing {productCount} result(s) for "search"</div>
+        <div>
+          Showing {productCount} result(s) for {category}
+        </div>
         <div className="dropdown">
           <button onClick={showList} className="dropbtn">
-            Sort by:
+            Sort by: {category}
           </button>
           <div id="myDropdown" className="dropdown-content">
-            <a href="#" onClick={() => dropDownClick("accessory")}>
-              Accessory
+            <a href="#" onClick={() => dropDownClick("Accessories")}>
+              Accessories
             </a>
-            <a href="#" onClick={() => dropDownClick("apparel")}>
+            <a href="#" onClick={() => dropDownClick("Apparel")}>
               Apparel
             </a>
-            <a href="#" onClick={() => dropDownClick("shoes")}>
+            <a href="#" onClick={() => dropDownClick("Shoes")}>
               Shoes
             </a>
-            <a href="#" onClick={() => dropDownClick("utility")}>
-              Utility
+            <a href="#" onClick={() => dropDownClick("Utilities")}>
+              Utilities
             </a>
-            <a href="#" onClick={() => dropDownClick("low to high")}>
+            <a href="#" onClick={() => dropDownClick("Low to High")}>
               Low to High
             </a>
-            <a href="#" onClick={() => dropDownClick("high to low")}>
+            <a href="#" onClick={() => dropDownClick("High to Low")}>
               High to Low
             </a>
           </div>
