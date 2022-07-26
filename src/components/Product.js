@@ -1,8 +1,6 @@
 import React from "react";
-import dadShoe1 from "../images/dadShoe1.jpg";
 
 const Product = (props) => {
-  console.log(props.image);
   return (
     <div className="product">
       <div id="productImageDiv">

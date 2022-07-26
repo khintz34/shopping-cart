@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useState } from "react";
 import Product from "./Product";
 import dadShoe1 from "../images/dadShoe1.jpg";
@@ -5,6 +6,15 @@ import dadShoe2 from "../images/dadShoe2.jpg";
 import dadShoe3 from "../images/dadShoe3.webp";
 import dadShoe4 from "../images/dadShoe4.webp";
 import jorts from "../images/jorts.png";
+import fannyPack from "../images/fanny.jpg";
+import socks from "../images/socks.webp";
+import apron from "../images/apron.webp";
+import grill from "../images/grill.webp";
+import wrist from "../images/wrist.webp";
+import snow from "../images/snow.webp";
+import beer from "../images/beer.webp";
+import jokes from "../images/jokes.webp";
+import zipp from "../images/zipp.webp";
 
 const Shop = (props) => {
   const totalProducts = [
@@ -48,12 +58,84 @@ const Shop = (props) => {
       image: jorts,
       category: "apparel",
     },
+    {
+      name: "The 'Knew it Would Come Back'",
+      description: "No more stuffing your pockets with your kids nik nacs",
+      price: 29.99,
+      sale: 19.99,
+      image: fannyPack,
+      category: "accessory",
+    },
+    {
+      name: "The 'Hit me Tube Sock'",
+      description: "Dont want to get sunburned above the ankle!",
+      price: 20.99,
+      sale: 19.9,
+      image: socks,
+      category: "apparel",
+    },
+    {
+      name: "The 'Medium Rare'",
+      description: "You'll get pink and you'll like it",
+      price: 25.5,
+      sale: 19.99,
+      image: apron,
+      category: "apparel",
+    },
+    {
+      name: "The 'Dad of All Trades'",
+      description: "Flip, Skewer, Smoke.",
+      price: 39.99,
+      sale: 29.99,
+      image: grill,
+      category: "accessory",
+    },
+    {
+      name: "The 'Gadget Dad'",
+      description: "Never lose a bit again",
+      price: 29.99,
+      sale: 19.99,
+      image: wrist,
+      category: "accessory",
+    },
+    {
+      name: "The 'How Much Horsepower'",
+      description: "No more throwing your back out",
+      price: 200,
+      sale: 149.99,
+      image: snow,
+      category: "utility",
+    },
+    {
+      name: "The 'Not Now Honey'",
+      description: "I'm watching the game!",
+      price: 30.49,
+      sale: 25.99,
+      image: beer,
+      category: "accessory",
+    },
+    {
+      name: "The 'Starter Guide'",
+      description: "Every dad should know these",
+      price: 10.59,
+      sale: 6.99,
+      image: jokes,
+      category: "accessory",
+    },
+    {
+      name: "The 'Versatile'",
+      description: "The 'One Pant to Rule Them All'",
+      price: 40.0,
+      sale: 35.99,
+      image: zipp,
+      category: "apparel",
+    },
   ];
 
   const [currentProducts, setCurrentProducts] = useState(totalProducts);
+  const [productCount, setProductCount] = useState(totalProducts.length);
 
   let productArray = currentProducts.map((index, i) => {
-    console.log(index.image);
     return (
       <Product
         image={index.image}
@@ -66,10 +148,70 @@ const Shop = (props) => {
     );
   });
 
-  console.log(currentProducts);
+  function showList() {
+    document.getElementById("myDropdown").classList.toggle("show");
+  }
+
+  window.onclick = function (event) {
+    if (!event.target.matches(".dropbtn")) {
+      var dropdowns = document.getElementsByClassName("dropdown-content");
+      var i;
+      for (i = 0; i < dropdowns.length; i++) {
+        var openDropdown = dropdowns[i];
+        if (openDropdown.classList.contains("show")) {
+          openDropdown.classList.remove("show");
+        }
+      }
+    }
+  };
+
+  const dropDownClick = (category) => {
+    setProductCount(0);
+
+    if (category === "low to high" || category === "high to low") {
+      setCurrentProducts(totalProducts);
+      setProductCount(totalProducts.length);
+    } else {
+      let newArray = totalProducts.filter((index, i) => {
+        if (index.category === category) {
+          return index;
+        }
+      });
+      setCurrentProducts(newArray);
+      setProductCount(newArray.length);
+    }
+  };
+
   return (
     <div id="shop-main">
-      <div id="shop-header">HEADER</div>
+      <div id="shop-header">
+        <div>Showing {productCount} result(s) for "search"</div>
+        <div className="dropdown">
+          <button onClick={showList} className="dropbtn">
+            Sort by:
+          </button>
+          <div id="myDropdown" className="dropdown-content">
+            <a href="#" onClick={() => dropDownClick("accessory")}>
+              Accessory
+            </a>
+            <a href="#" onClick={() => dropDownClick("apparel")}>
+              Apparel
+            </a>
+            <a href="#" onClick={() => dropDownClick("shoes")}>
+              Shoes
+            </a>
+            <a href="#" onClick={() => dropDownClick("utility")}>
+              Utility
+            </a>
+            <a href="#" onClick={() => dropDownClick("low to high")}>
+              Low to High
+            </a>
+            <a href="#" onClick={() => dropDownClick("high to low")}>
+              High to Low
+            </a>
+          </div>
+        </div>
+      </div>
       <div id="shop-homeHolder">
         <div id="shop-home">{productArray}</div>
       </div>
