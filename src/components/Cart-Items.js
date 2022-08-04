@@ -9,10 +9,30 @@ const CartItem = (props) => {
       </div>
       <h3>{props.name}</h3>
       <div id="cartQuantity">
-        <button>-</button>
-        <p>Number</p>
-        <button>+</button>
+        <button
+          onClick={() => {
+            props.init(props.index, "remove");
+          }}
+        >
+          -
+        </button>
+        <p>{props.quantity}</p>
+        <button
+          onClick={() => {
+            props.init(props.index, "add");
+          }}
+        >
+          +
+        </button>
       </div>
+      <button
+        id="removeItem"
+        onClick={() => {
+          props.init(props.index, "remove");
+        }}
+      >
+        Remove Item
+      </button>
     </div>
   );
 };

@@ -175,6 +175,14 @@ a:active {
   border: none;
 }
 
+.product-btn:hover {
+  transform: scale(1.1);
+}
+
+.product-btn:active {
+  transform: translateY(4px);
+}
+
 #productImageDiv {
   height: 160px;
   display: flex;
