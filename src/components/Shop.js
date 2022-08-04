@@ -1,140 +1,15 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React, { useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
+import { CartContext } from "./CartContext";
 import Product from "./Product";
-import dadShoe1 from "../images/dadShoe1.jpg";
-import dadShoe2 from "../images/dadShoe2.jpg";
-import dadShoe3 from "../images/dadShoe3.webp";
-import dadShoe4 from "../images/dadShoe4.webp";
-import jorts from "../images/jorts.png";
-import fannyPack from "../images/fanny.jpg";
-import socks from "../images/socks.webp";
-import apron from "../images/apron.webp";
-import grill from "../images/grill.webp";
-import wrist from "../images/wrist.webp";
-import snow from "../images/snow.webp";
-import beer from "../images/beer.webp";
-import jokes from "../images/jokes.webp";
-import zipp from "../images/zipp.webp";
+import { totalProductList } from "../data/product-list";
 
 const Shop = (props) => {
-  const totalProducts = [
-    {
-      name: "The Dad 101",
-      description: "Unsure where to start? Start here!",
-      price: 74.99,
-      sale: 54.97,
-      image: dadShoe1,
-      category: "Shoes",
-    },
-    {
-      name: "The 'Back in My Day'",
-      description: "Want to relive your glory days??",
-      price: 65.99,
-      sale: 44.48,
-      image: dadShoe2,
-      category: "Shoes",
-    },
-    {
-      name: "The 'Go Ask Your Mother'",
-      description: "Tired of annoying questions?",
-      price: 69.99,
-      sale: 67.26,
-      image: dadShoe3,
-      category: "Shoes",
-    },
-    {
-      name: "The 'Rub Some Dirt On It' 2.0",
-      description: "Pairs perfect with jorts!",
-      price: 70.99,
-      sale: 64.4,
-      image: dadShoe4,
-      category: "Shoes",
-    },
-    {
-      name: "The 'Its Going to Come Back in Style'",
-      description: "Any Occasion. Any Place.",
-      price: 37.0,
-      sale: 29.97,
-      image: jorts,
-      category: "Apparel",
-    },
-    {
-      name: "The 'Knew it Would Come Back'",
-      description: "No more stuffing your pockets with your kids nik nacs",
-      price: 29.99,
-      sale: 19.99,
-      image: fannyPack,
-      category: "Accessories",
-    },
-    {
-      name: "The 'Hit me Tube Sock'",
-      description: "Dont want to get sunburned above the ankle!",
-      price: 20.99,
-      sale: 19.9,
-      image: socks,
-      category: "Apparel",
-    },
-    {
-      name: "The 'Medium Rare'",
-      description: "You'll get pink and you'll like it",
-      price: 25.5,
-      sale: 19.99,
-      image: apron,
-      category: "Apparel",
-    },
-    {
-      name: "The 'Dad of All Trades'",
-      description: "Flip, Skewer, Smoke.",
-      price: 39.99,
-      sale: 29.99,
-      image: grill,
-      category: "Accessories",
-    },
-    {
-      name: "The 'Gadget Dad'",
-      description: "Never lose a bit again",
-      price: 29.99,
-      sale: 19.99,
-      image: wrist,
-      category: "Accessories",
-    },
-    {
-      name: "The 'How Much Horsepower'",
-      description: "No more throwing your back out",
-      price: 200,
-      sale: 149.99,
-      image: snow,
-      category: "Utilities",
-    },
-    {
-      name: "The 'Not Now Honey'",
-      description: "I'm watching the game!",
-      price: 30.49,
-      sale: 25.99,
-      image: beer,
-      category: "Accessories",
-    },
-    {
-      name: "The 'Starter Guide'",
-      description: "Every dad should know these",
-      price: 10.59,
-      sale: 6.99,
-      image: jokes,
-      category: "Accessories",
-    },
-    {
-      name: "The 'Versatile'",
-      description: "The 'One Pant to Rule Them All'",
-      price: 40.0,
-      sale: 35.99,
-      image: zipp,
-      category: "Apparel",
-    },
-  ];
-
-  const [currentProducts, setCurrentProducts] = useState(totalProducts);
-  const [productCount, setProductCount] = useState(totalProducts.length);
+  // State Items
+  const [currentProducts, setCurrentProducts] = useState(totalProductList);
+  const [productCount, setProductCount] = useState(totalProductList.length);
   const [category, setCategory] = useState("All Items");
+  const { cart, setCart } = useContext(CartContext);
 
   let productArray = currentProducts.map((index, i) => {
     return (
@@ -142,13 +17,16 @@ const Shop = (props) => {
         image={index.image}
         name={index.name}
         description={index.description}
-        price={`ORIG: $${index.price}`}
-        sale={`SALE: $${index.sale}`}
+        price={index.price}
+        sale={index.sale}
         key={`product-${i}`}
+        addToCart={addToCart}
+        quantity={index.quantity}
       />
     );
   });
 
+  // Drop Down Events
   function showList() {
     document.getElementById("myDropdown").classList.toggle("show");
   }
@@ -172,7 +50,8 @@ const Shop = (props) => {
     if (category === "Low to High" || category === "High to Low") {
       sortProducts(category);
     } else {
-      let newArray = totalProducts.filter((index, i) => {
+      // eslint-disable-next-line array-callback-return
+      let newArray = totalProductList.filter((index, i) => {
         if (index.category === category) {
           return index;
         }
@@ -186,17 +65,39 @@ const Shop = (props) => {
   function sortProducts(category) {
     let sortArray;
     if (category === "Low to High") {
-      sortArray = totalProducts.sort((a, b) => {
+      sortArray = totalProductList.sort((a, b) => {
         return a.sale - b.sale;
       });
     } else {
-      sortArray = totalProducts.sort((a, b) => {
+      sortArray = totalProductList.sort((a, b) => {
         return b.sale - a.sale;
       });
     }
     setCurrentProducts(sortArray);
     setProductCount(sortArray.length);
     setCategory(category);
+  }
+
+  // Adding Items to Cart State
+  function addToCart(item) {
+    const cartHasItem = cart.some((cartItem) => cartItem.name === item.name);
+
+    if (cartHasItem) {
+      let cartRef;
+      for (let i = 0; i < cart.length; i++) {
+        if (cart[i].name === item.name) {
+          cartRef = i;
+        }
+      }
+      let items = [...cart];
+      let newItem = Object.assign({}, cart[cartRef]);
+      newItem.quantity = cart[cartRef].quantity + 1;
+      items.splice(cartRef, 1);
+      items.push(newItem);
+      setCart(items);
+    } else {
+      setCart((oldCart) => [...oldCart, item]);
+    }
   }
 
   return (

@@ -1,6 +1,6 @@
 import React from "react";
 import "../styles/about.css";
-import dork from "../images/dork.jpeg";
+import dork from "../images/dork.jpg";
 import coolDad from "../images/coolDad.jpeg";
 import grillDad from "../images/grillDad.jpeg";
 import lazyDad from "../images/lazyDad.jpeg";
@@ -50,23 +50,23 @@ const About = () => {
           <div className="teamMain">
             <div className="teamItem">
               <h2>Cool Dad</h2>
-              <h3>Founder and CEO</h3>
-              <div className="teamImg">
-                <img src={coolDad} alt="Cool Dad" />
+              <h3 className="title">Founder and CEO</h3>
+              <div className="teamImgDiv">
+                <img src={coolDad} alt="Cool Dad" className="teamImg" />
               </div>
             </div>
             <div className="teamItem">
-              <h2>Grill Dad</h2>
-              <h3>Chief Grill Officer</h3>
-              <div className="teamImg">
-                <img src={grillDad} alt="Grill Dad" />
+              <h2>Mustache Dad</h2>
+              <h3 className="title">Chief Grill Officer</h3>
+              <div className="teamImgDiv">
+                <img src={grillDad} alt="Grill Dad" className="teamImg" />
               </div>
             </div>
             <div className="teamItem">
               <h2>Lazy Dad</h2>
-              <h3>Head of Resting his Eyes</h3>
-              <div className="teamImg">
-                <img src={lazyDad} alt="Lazy Dad" />
+              <h3 className="title">Head of Resting his Eyes</h3>
+              <div className="teamImgDiv">
+                <img src={lazyDad} alt="Lazy Dad" className="teamImg" />
               </div>
             </div>
           </div>

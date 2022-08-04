@@ -28,6 +28,10 @@ header {
   color: var(--tan);
 }
 
+.link-header:hover {
+  transform: scale(1.4);
+}
+
 footer {
   display: flex;
   flex-direction: row;
@@ -51,15 +55,24 @@ footer {
 }
 
 #home {
-  height: 80vh;
+  height: 90vh;
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  /* justify-content: center; */
   align-items: center;
-  gap: 10vw;
+  /* gap: 10vw; */
   background-image: url("../src/images/grass.jpg");
   background-repeat: no-repeat;
   background-size: cover;
+}
+
+#home-main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 90vh;
+  width: 60vw;
 }
 
 .shoe-main {
@@ -90,8 +103,11 @@ footer {
 }
 
 .dadImg {
-  width: 550px;
-  border-radius: 5%;
+  height: 90vh;
+  width: 50vw;
+  margin-left: auto;
+  /* width: 550px;
+  border-radius: 5%; */
 }
 
 .dadFont {

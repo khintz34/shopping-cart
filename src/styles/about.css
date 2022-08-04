@@ -1,14 +1,3 @@
-:root {
-  --brown: #caad7e;
-  --tan: #ece5c8;
-  --light-tan: #d6c995;
-  --light-green: #d5e7b8;
-  --medium-green: #c4dea4;
-  --header: #61848e;
-  --brown: #402017;
-  --wall: #61848e;
-}
-
 #aboutPage {
   background-color: #f1f1f1;
 }
@@ -40,7 +29,7 @@
   width: 100vw;
   margin-top: 2vh;
   justify-content: center;
-  /* gap: 100px; */
+  gap: 100px;
 }
 
 .aboutInfo {
@@ -49,6 +38,7 @@
   padding-left: 4vw;
   padding-top: 8vh;
   line-height: 1.5;
+  font-size: 21px;
 }
 
 .aboutImageDiv {
@@ -56,29 +46,37 @@
 }
 
 .aboutImage {
-  width: 400px;
+  height: 75vh;
 }
 
 .teamMain {
   display: flex;
   flex-direction: row;
   justify-content: center;
+  align-items: center;
+  gap: 10vw;
   margin-top: 20px;
   margin-bottom: 20px;
 }
 
 .teamItem {
-  height: 50vh;
+  height: 60vh;
   width: 20vw;
   display: flex;
   flex-direction: column;
 }
 
-.teamImg {
+.teamImgDiv {
   height: 55vh;
+  width: 20vw;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.teamImg {
+  height: 300px;
+  width: 300px;
 }
 
 .italics {
@@ -95,4 +93,9 @@
 #link-about:hover {
   text-decoration: underline;
   color: var(--brown);
+}
+
+.title {
+  color: var(--header);
+  margin-top: 1vh;
 }
