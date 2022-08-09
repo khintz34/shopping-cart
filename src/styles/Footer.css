@@ -1,0 +1,70 @@
+footer {
+  display: flex;
+  flex-direction: column;
+  height: 45vh;
+}
+
+#footerTopDiv {
+  width: 80%;
+  border-bottom: 2px solid black;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  height: 12vh;
+}
+
+#footerBottomDiv {
+  height: 20vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 80%;
+  margin-top: 20px;
+}
+
+.contactCard {
+  text-align: left;
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+}
+
+.icons {
+  min-height: 30px;
+  max-height: 60px;
+}
+
+.iconDiv {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 2px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.iconDiv:hover {
+  color: var(--header);
+  border-color: var(--header);
+  cursor: pointer;
+}
+
+.infoDiv {
+  width: 120px;
+  height: 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+#footList {
+  line-height: 1.5;
+  text-align: left;
+  min-width: 50px;
+}
+
+.links:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}

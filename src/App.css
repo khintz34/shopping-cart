@@ -55,12 +55,11 @@ footer {
 }
 
 #home {
-  height: 90vh;
+  height: 80vh;
   display: flex;
   flex-direction: row;
   /* justify-content: center; */
   align-items: center;
-  /* gap: 10vw; */
   background-image: url("../src/images/grass.jpg");
   background-repeat: no-repeat;
   background-size: cover;
@@ -71,7 +70,7 @@ footer {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 90vh;
+  height: 80vh;
   width: 60vw;
 }
 
@@ -103,15 +102,16 @@ footer {
 }
 
 .dadImg {
-  height: 90vh;
+  height: 75vh;
   width: 50vw;
-  margin-left: auto;
-  /* width: 550px;
-  border-radius: 5%; */
+  margin-left: 10px;
+  margin-right: 3vh;
+  border-radius: 5%;
 }
 
 .dadFont {
   color: var(--light-tan);
+  font-size: 50px;
 }
 
 .main-margin {
@@ -250,4 +250,28 @@ a:active {
 
 .show {
   display: block;
+}
+
+#caroHolder {
+  width: 100vw;
+}
+
+#cardHolder {
+  height: 75vh;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.cardDiv {
+  background-color: #f1f1f1;
+}
+
+#cardHeader {
+  padding-top: 40px;
+  padding-bottom: 40px;
+  text-align: left;
+  padding-left: 40px;
+  font-size: 50px;
 }

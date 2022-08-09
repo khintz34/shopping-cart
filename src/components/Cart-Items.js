@@ -28,7 +28,7 @@ const CartItem = (props) => {
       <button
         id="removeItem"
         onClick={() => {
-          props.init(props.index, "remove");
+          props.init(props.index, "delete");
         }}
       >
         Remove Item

@@ -12,25 +12,14 @@ const Cart = (props) => {
   let total = 0.0;
 
   let subTotal = cart.map((index) => {
-    sub += index.sale * index.quantity;
-    sub = parseFloat(sub).toFixed(2);
-    if (sub !== 0) {
-      calculateShipping(sub);
-    }
+    let num = index.sale * index.quantity;
     calculateTaxes(sub);
+    addSubotal(num);
     addTotal();
   });
 
-  function calculateTotals() {
-    let subTotal2 = cart.map((index) => {
-      sub += index.sale * index.quantity;
-      sub = parseFloat(sub).toFixed(2);
-      if (sub !== 0) {
-        calculateShipping(sub);
-      }
-      calculateTaxes(sub);
-      addTotal();
-    });
+  function addSubotal(num) {
+    sub += parseFloat(Number(num));
   }
 
   function calculateShipping(num) {
@@ -53,7 +42,12 @@ const Cart = (props) => {
   }
 
   function addTotal() {
-    total = Number(sub) + Number(taxes) + Number(total);
+    if (sub !== 0) {
+      calculateShipping(sub);
+    }
+    total = parseFloat(Number(sub) + Number(taxes) + Number(shipping)).toFixed(
+      2
+    );
   }
 
   const sortedCart = cart.sort((a, b) => {
@@ -93,9 +87,11 @@ const Cart = (props) => {
     let items = [...cart];
     if (type === "remove" && cart[cartRef].quantity === 1) {
       removeItem(cartRef);
-      console.log("here");
     } else {
       changeQuantity(items, cartRef, type);
+    }
+    if (type === "delete") {
+      removeItem(cartRef);
     }
   }
 
@@ -117,11 +113,11 @@ const Cart = (props) => {
   return (
     <div id="cartPage">
       <div id="cartHeader">
-        <button className="dropbtn" id="shopBtn">
-          <Link to="/shop" className="link">
+        <Link to="/shop" className="link">
+          <button className="dropbtn" id="shopBtn">
             Continue Shopping
-          </Link>
-        </button>
+          </button>
+        </Link>
       </div>
       <div id="cartMain">
         <div id="cartItems">

@@ -22,8 +22,6 @@ const Shop = (props) => {
         key={`product-${i}`}
         addToCart={addToCart}
         quantity={index.quantity}
-        increase={increaseQuantity}
-        decrease={decreaseQuantity}
       />
     );
   });
@@ -100,39 +98,6 @@ const Shop = (props) => {
     } else {
       setCart((oldCart) => [...oldCart, item]);
     }
-  }
-
-  function increaseQuantity(item) {
-    let cartRef;
-    for (let i = 0; i < cart.length; i++) {
-      if (cart[i].name === item.name) {
-        cartRef = i;
-      }
-    }
-    let items = [...cart];
-    let newItem = Object.assign({}, cart[cartRef]);
-    newItem.quantity = cart[cartRef].quantity + 1;
-    items.splice(cartRef, 1);
-    items.push(newItem);
-    setCart(items);
-  }
-
-  function decreaseQuantity(item) {
-    let cartRef;
-    for (let i = 0; i < cart.length; i++) {
-      if (cart[i].name === item.name) {
-        cartRef = i;
-      }
-    }
-    let items = [...cart];
-    let newItem = Object.assign({}, cart[cartRef]);
-    if (cart[cartRef.quantity === 0]) {
-      return;
-    }
-    newItem.quantity = cart[cartRef].quantity - 1;
-    items.splice(cartRef, 1);
-    items.push(newItem);
-    setCart(items);
   }
 
   return (
