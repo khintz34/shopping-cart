@@ -11,19 +11,30 @@ const Cart = (props) => {
   let taxes = 0.0;
   let total = 0.0;
 
-  let subTotal = cart.map((index) => {
-    let num = index.sale * index.quantity;
-    calculateTaxes(sub);
+  let subtotal = cart.map((index) => {
+    let number = index.sale * index.quantity;
+    let num = parseFloat((Math.round(number * 100) / 100).toFixed(2));
+
     addSubotal(num);
-    addTotal();
+  });
+
+  useEffect(() => {
+    if (cart.length === 0) {
+      let title = document.querySelector("#cartItemTitle");
+      let emptyCart = document.querySelector("#emptyCart");
+      title.textContent = "Your Cart is Empty";
+      emptyCart.classList.remove("emptyCart");
+    }
   });
 
   function addSubotal(num) {
-    sub += parseFloat(Number(num));
+    let newNum = Number(sub + num).toFixed(2);
+    sub = Number(newNum);
+    calculateTaxes(sub);
   }
 
   function calculateShipping(num) {
-    if (num === "0.00") {
+    if (num === 0) {
       shipping = 0.0;
     } else if (num < 75) {
       shipping = 9.99;
@@ -39,6 +50,8 @@ const Cart = (props) => {
   function calculateTaxes(num) {
     let taxHold = num * 0.0425;
     taxes = taxHold.toFixed(2);
+
+    addTotal();
   }
 
   function addTotal() {
@@ -66,10 +79,6 @@ const Cart = (props) => {
       />
     );
   });
-
-  useEffect(() => {
-    console.log(cart);
-  }, [cart]);
 
   function removeItem(cartRef) {
     let items = [...cart];
@@ -110,9 +119,21 @@ const Cart = (props) => {
     setCart(items);
   }
 
+  function submitOrder() {
+    if (cart.length !== 0) {
+      let submitBtn = document.querySelector("#submitBtn");
+      let submitStatus = document.querySelector("#submitStatus");
+
+      submitBtn.classList.add("hide");
+      submitStatus.classList.remove("hide");
+
+      setCart([]);
+    }
+  }
+
   return (
     <div id="cartPage">
-      <div id="cartHeader">
+      <div id="cartHeader" className="sticky">
         <Link to="/shop" className="link">
           <button className="dropbtn" id="shopBtn">
             Continue Shopping
@@ -121,16 +142,48 @@ const Cart = (props) => {
       </div>
       <div id="cartMain">
         <div id="cartItems">
-          <h2>Items in Cart</h2>
+          <h2 id="cartItemTitle">Items in Cart</h2>
+          <p id="emptyCart" className="emptyCart">
+            There are no items in your shopping cart,{" "}
+            <Link to="/shop" id="emptyLink">
+              continue shopping
+            </Link>
+          </p>
           <div id="cartHolder">{cartArray}</div>
         </div>
         <div id="cartTotal">
-          <h2>What's the Damage?</h2>
+          <h2 id="cartTotalHeader">What's the Damage?</h2>
           <div id="cartCosts">
-            <h3>Subtotal: ${sub} </h3>
-            <h3>Shipping: ${shipping}</h3>
-            <h3>Tax: ${taxes}</h3>
-            <h2>Total: ${total}</h2>
+            <div className="totalItem">
+              <h3>Order Subtotal: </h3>
+              <h3>${sub} </h3>
+            </div>
+            <div className="totalItem">
+              <h3>Shipping: </h3>
+              <h3>${shipping} </h3>
+            </div>
+            <div className="totalItem">
+              <h3>Tax: </h3>
+              <h3>${taxes}</h3>
+            </div>
+            <div className="totalItem" id="totalCost">
+              <h2>Total:</h2>
+              <h2>${total}</h2>
+            </div>
+            <div className="cartBottomHolder">
+              <button
+                id="submitBtn"
+                onClick={() => {
+                  submitOrder();
+                }}
+              >
+                Submit Order
+              </button>
+              <div id="submitStatus" className="hide">
+                Your Order was Successfully Submitted. An email confirmartion
+                will be sent shortly.{" "}
+              </div>
+            </div>
           </div>
         </div>
       </div>

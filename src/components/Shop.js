@@ -102,7 +102,7 @@ const Shop = (props) => {
 
   return (
     <div id="shop-main">
-      <div id="shop-header">
+      <div id="shop-header" className="sticky">
         <div>
           Showing {productCount} result(s) for {category}
         </div>

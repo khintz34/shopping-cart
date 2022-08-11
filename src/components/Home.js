@@ -7,6 +7,7 @@ import Cards from "./Cards";
 import sustain from "../images/sustain.jpeg";
 import growth from "../images/growth.jpeg";
 import durable from "../images/durable.jpeg";
+
 const Home = () => {
   return (
     <div id="home-page">
