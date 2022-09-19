@@ -44,11 +44,11 @@ const Shop = (props) => {
     }
   };
 
-  const dropDownClick = (category) => {
+  const dropDownClick = (category, e) => {
     setProductCount(0);
 
     if (category === "Low to High" || category === "High to Low") {
-      sortProducts(category);
+      sortProducts(category, e);
     } else {
       // eslint-disable-next-line array-callback-return
       let newArray = totalProductList.filter((index, i) => {
@@ -59,10 +59,12 @@ const Shop = (props) => {
       setCurrentProducts(newArray);
       setProductCount(newArray.length);
       setCategory(category);
+
+      e.preventDefault();
     }
   };
 
-  function sortProducts(category) {
+  function sortProducts(category, e) {
     let sortArray;
     if (category === "Low to High") {
       sortArray = totalProductList.sort((a, b) => {
@@ -76,6 +78,8 @@ const Shop = (props) => {
     setCurrentProducts(sortArray);
     setProductCount(sortArray.length);
     setCategory(category);
+
+    e.preventDefault();
   }
 
   // Adding Items to Cart State
@@ -107,26 +111,26 @@ const Shop = (props) => {
           Showing {productCount} result(s) for {category}
         </div>
         <div className="dropdown">
-          <button onClick={showList} className="dropbtn">
+          <button type="button" onClick={showList} className="dropbtn">
             Sort by: {category}
           </button>
           <div id="myDropdown" className="dropdown-content">
-            <a href="#" onClick={() => dropDownClick("Accessories")}>
+            <a href="#" onClick={(e) => dropDownClick("Accessories", e)}>
               Accessories
             </a>
-            <a href="#" onClick={() => dropDownClick("Apparel")}>
+            <a href="#" onClick={(e) => dropDownClick("Apparel", e)}>
               Apparel
             </a>
-            <a href="#" onClick={() => dropDownClick("Shoes")}>
+            <a href="#" onClick={(e) => dropDownClick("Shoes", e)}>
               Shoes
             </a>
-            <a href="#" onClick={() => dropDownClick("Utilities")}>
+            <a href="#" onClick={(e) => dropDownClick("Utilities", e)}>
               Utilities
             </a>
-            <a href="#" onClick={() => dropDownClick("Low to High")}>
+            <a href="#" onClick={(e) => dropDownClick("Low to High", e)}>
               Low to High
             </a>
-            <a href="#" onClick={() => dropDownClick("High to Low")}>
+            <a href="#" onClick={(e) => dropDownClick("High to Low", e)}>
               High to Low
             </a>
           </div>

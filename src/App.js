@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes, HashRouter } from "react-router-dom";
 import "./App.css";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
@@ -12,7 +12,7 @@ import { useState } from "react";
 function App() {
   const [cart, setCart] = useState([]);
   return (
-    <BrowserRouter>
+    <HashRouter>
       <div className="App">
         <CartContext.Provider value={{ cart, setCart }}>
           <Header />
@@ -25,7 +25,7 @@ function App() {
         </CartContext.Provider>
         <Footer />
       </div>
-    </BrowserRouter>
+    </HashRouter>
   );
 }
 
